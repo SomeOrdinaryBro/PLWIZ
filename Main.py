@@ -22,11 +22,14 @@ def Video_Downloader():
   print("Video downloaded successfully!")
 
 while True:
-    print("What Service would you like to use")
+    print("What Downloader would you like to use")
     print("-----------------------------------------------------")
     print(" ")
-    print("Select 1 -  Video Downloader")
-    print("Select 2 -  Audio Downloader") 
+    print("Select 1 for Video Downloader")
+    print("Select 2 for Audio Downloader")
+    print(" ")
+    print("videos will be downloaded in mp4 format & audios in mp3")
+    print(" ")
     print("-----------------------------------------------------")  
     choice = input("Enter Your choice : ")
 
@@ -39,12 +42,10 @@ while True:
         elif choice == '2':
             Audio_Downloader()
 
-        next_calculation = input("Would you like to download another video/audio? (YES/NO): ")
-        if next_calculation == "NO":
-            break
-        if next_calculation == "No":
-            break
-        if next_calculation == "nO":
-            break
-        if next_calculation == "No":
-            break
+        next_calculation = input("Would you like to download another video/audio? (yes/no): ")
+      
+        if next_calculation.lower() != "yes":
+            print("Exiting the program.")
+            exit()
+        else:
+          print("Continuing the program.")
