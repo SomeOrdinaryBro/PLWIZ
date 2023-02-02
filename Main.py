@@ -34,10 +34,10 @@ while True:
     if choice in ('1', '2'):
       
         if choice == '1':
-            SalarayKal()
+            Video_Downloader()
 
         elif choice == '2':
-            ShapesKal()
+            Audio_Downloader()
 
         next_calculation = input("Would you like to download another video/audio? (YES/NO): ")
         if next_calculation == "NO":
