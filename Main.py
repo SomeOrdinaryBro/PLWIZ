@@ -21,3 +21,30 @@ def Video_Downloader():
   
   print("Video downloaded successfully!")
 
+while True:
+    print("What Service would you like to use")
+    print("-----------------------------------------------------")
+    print(" ")
+    print("Select 1 -  Video Downloader")
+    print("Select 2 -  Audio Downloader") 
+    print("-----------------------------------------------------")  
+    choice = input("Enter Your choice : ")
+
+  
+    if choice in ('1', '2'):
+      
+        if choice == '1':
+            SalarayKal()
+
+        elif choice == '2':
+            ShapesKal()
+
+        next_calculation = input("Would you like to download another video/audio? (YES/NO): ")
+        if next_calculation == "NO":
+            break
+        if next_calculation == "No":
+            break
+        if next_calculation == "nO":
+            break
+        if next_calculation == "No":
+            break
