@@ -4,13 +4,7 @@ Recommended Web Compiler: https://replit.com/
 
 if you want to run this program on your pc, you will need to install python on your pc https://www.python.org/downloads/
 
-How to run the program ?
+How to run the program?
 
-**On Web**
-
-Open your web compiler copy and paste the code from Main.py file and hit run..
-
-**Locally**
-
-Download/Save the Main.py to your pc and execute the python application and a CMD will open up, follow the steps and ur good to go, no need to install or anything.
-(program will run on your pc only if u have python installed)
+1. Copy and Paste the code on to an online IDE like replit and run it
+2. Download the main.py file and run it locally, a cmd will pop up and ur good to go
