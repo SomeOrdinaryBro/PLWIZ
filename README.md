@@ -12,3 +12,6 @@ Open your web compiler copy and paste the code from Main.py file and hit run..
 **Locally:**
 Download/Save the Main.py to your pc and execute the python application and a CMD will open up, follow the steps and ur good to go, no need to install or anything.
 (program will run on your pc only if u have python installed)
+
+**Application:**
+I have also added in Ui with VideoDownloaderapp.py you can run this application only if u have python or tkinter intalled on your pc, review the code if you want. IT IS COMPLETELY SAFE
