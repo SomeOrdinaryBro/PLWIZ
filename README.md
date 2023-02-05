@@ -25,7 +25,7 @@ A simple python script to download YouTube audio or video in a chosen quality. T
   
 # How to run ?
 * Clone the repository  
-* Run the script using the command 'python youtube_downloader.py'  
+* Run the script using the command 'python main.py'  
 * Enter the YouTube link and choose whether you want to download audio or video.  
 * Enter the desired quality (for video) or press Enter to use the default quality (for audio)  
 * The downloaded audio/video will be in the current directory with a filename generated from the video title and desired quality.  
