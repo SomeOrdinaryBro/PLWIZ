@@ -1,3 +1,5 @@
+#PLWIZ
+
 import re
 import subprocess
 from urllib.parse import urlparse
