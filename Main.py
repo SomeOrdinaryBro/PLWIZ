@@ -1,78 +1,93 @@
+import re
+import subprocess
+from urllib.parse import urlparse
 from pytube import YouTube
 
-def Audio_Downloader():
+def is_valid_url(url):
+    parsed_url = urlparse(url)
+    return parsed_url.scheme in ['http', 'https'] and (parsed_url.netloc.endswith('youtube.com') or parsed_url.netloc.endswith('youtu.be'))
 
-  link = input("Paste your YouTube link here: ")
-  yt = YouTube(link)
+def audio_downloader():
+    link = input("Paste your YouTube link here: ")
 
-  audio = yt.streams.filter(only_audio=True).first()
-  audio.download('./')
+    if not is_valid_url(link):
+        print("Invalid YouTube link.")
+        return
 
-  print("Audio Downloaded Successfully")
+    try:
+        yt = YouTube(link)
+    except Exception as e:
+        print("An error occurred while processing the link.")
+        print(e)
+        return
 
-def Video_Downloader():
-  def download_video(url, quality='360p'):
-    
-    yt = YouTube(url)
+    audio = yt.streams.filter(only_audio=True).first()
+    if audio is None:
+        print("No audio stream found for this video.")
+        return
+
+    audio_filename = re.sub(r'[^\w\s]+', '_', yt.title) + ".mp3"
+
+    try:
+        subprocess.run(["ffmpeg", "-i", audio.url, "-vn", "-c:a", "copy", audio_filename], check=True)
+    except subprocess.CalledProcessError as e:
+        print("An error occurred while downloading the audio file.")
+        print(e)
+        return
+
+    print(f"Audio '{audio_filename}' has been downloaded successfully.")
+
+def video_downloader():
+    url = input("Paste the YouTube video URL: ")
+
+    if not is_valid_url(url):
+        print("Invalid YouTube link.")
+        return
+
+    try:
+        yt = YouTube(url)
+    except Exception as e:
+        print("An error occurred while processing the link.")
+        print(e)
+        return
+
+    valid_qualities = ['360p', '480p', '720p', '1080p']
+    quality = input("Enter the desired video quality (360p, 480p, 720p, or 1080p): ")
+    if quality.lower() not in [q.lower() for q in valid_qualities]:
+        print(f"Invalid quality. Available options are: {', '.join(valid_qualities)}")
+        return
+
     video = yt.streams.filter(progressive=True, file_extension='mp4').get_by_resolution(quality)
-    video.download(filename=yt.title)
-    print(f"Video '{yt.title}' with {quality} quality has been downloaded successfully.")
-    
-  url = input("Paste the YouTube video URL: ")
-  quality = input("\n480p\n720p\n1080p\n\nNote: if the program breaks after you type in the quality, that means the video isnt available on that quality or you typed it wrong\n\nExample: 144p or 1080p\n\nEnter the desired video quality:  ")
-  
-  while True:
-      download_video(url, quality)
-      quality_choice = input("change the video quality? (y/n): ")
-      if quality_choice.lower() == 'y':
-          quality = input("Enter the desired video quality: ")
-      else:
-        Another_Video()
+    if video is None:
+        print(f"No video stream found for quality '{quality}'.")
+        return
 
-def Another_Video():
-  next_calculation = input("Would you like to download another video or an audio? (y/n): ")
-   
-  if next_calculation.lower() != "y":
-    print("Exiting the program.")
-    exit()
-  else:
-    print("-----------------------------------------------------")
-    print(" ")
+    video_filename = re.sub(r'[^\w\s]+', '_', yt.title) + f" ({quality}).mp4"
+
+    try:
+        subprocess.run(["ffmpeg", "-i", video.url, "-c:v", "copy", "-c:a", "copy", video_filename], check=True)
+    except subprocess.CalledProcessError as e:
+        print("An error occurred while downloading the video file.")
+        print(e)
+        return
+
+    print(f"Video '{video_filename}' has been downloaded successfully.")
+
+def main_menu():
     print("Select 1 for Video Downloader")
     print("Select 2 for Audio Downloader")
-    print(" ")
-    print("videos will be downloaded in mp4 format & audios in mp3")
-    print(" ")
-    print("-----------------------------------------------------")  
-    choice = input("Enter Your choice : ")
+    print("Enter 'q' to quit")
 
-  
-    if choice in ('1', '2'):
-      
-        if choice == '1':
-            Video_Downloader()
+    choice = input("Enter your choice: ")
+    if choice == '1':
+        video_downloader()
+    elif choice == '2':
+        audio_downloader()
+    elif choice == 'q':
+        return
+    else:
+        print("Invalid choice. Try again.")
+        main_menu()
 
-        elif choice == '2':
-            Audio_Downloader()
-    
-
-while True:
-    print("What Downloader would you like to use")
-    print("-----------------------------------------------------")
-    print(" ")
-    print("Select 1 for Video Downloader")
-    print("Select 2 for Audio Downloader")
-    print(" ")
-    print("videos will be downloaded in mp4 format & audios in mp3")
-    print(" ")
-    print("-----------------------------------------------------")  
-    choice = input("Enter Your choice : ")
-
-  
-    if choice in ('1', '2'):
-      
-        if choice == '1':
-            Video_Downloader()
-
-        elif choice == '2':
-            Audio_Downloader()
+if __name__ == "__main__":
+    main_menu()
