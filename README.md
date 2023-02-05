@@ -2,19 +2,24 @@
 ## Overview
 This code is a script for downloading YouTube videos and audio in Python using the pytube library and ffmpeg command line tool. The script provides two main functions: audio_downloader and video_downloader. The audio_downloader function downloads the audio of a given YouTube video and saves it as an MP3 file, while the video_downloader function downloads the video and saves it as an MP4 file. The script also includes the is_valid_url function, which checks if a given URL is a valid YouTube URL.
 
+## Save Time By Following This Method
+* instead of downloading and going throught the process below, i would highly recommend using Replit to run the code and download the videos.  
+  
+* You can follow the link to visit the site and create an account boom!! yore done https://replit.com/~  
+
 ## Requirements
 1. [Python](https://www.python.org/) 3.x (Latest)
 2. [pytube](https://github.com/nficano/pytube) library
 3. [ffmpeg](https://www.ffmpeg.org/) command line tool
 
 ## Usage
-To use the script, you need to install the required libraries and tools. The pytube library can be installed using the following command:
+* To use the script, you need to install the required libraries and tools. The pytube library can be installed using the following command:
 
 `pip install pytube`
 
-The ffmpeg command line tool can be installed using the package manager of your operating system.
+* The ffmpeg command line tool can be installed using the package manager of your operating system.
 
-Once you have installed the required libraries and tools, you can run the script using the following command:
+* Once you have installed the required libraries and tools, you can run the script using the following command:
 
 `python plwiz.py`
 
