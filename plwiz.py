@@ -138,5 +138,5 @@ def main_menu():
 
 # This makes sure the main_menu is run only if this script is run directly
 # and not imported as a module
-if __name__ == "__main__":
+if __PLWIZ__ == "__PLWIZ__":
     main_menu()
